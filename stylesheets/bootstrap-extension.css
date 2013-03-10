@@ -1,0 +1,48 @@
+body{
+	padding-top: 60px;
+}
+
+textarea {
+  width: 95%;
+  height: 150px;
+  font-family: courier;
+}
+
+form{
+	display: inline;
+}
+
+.checkbox-set-element label {
+	display: inline;
+	padding: 0 5px 0px 5px;
+}
+
+input.inputString {
+	width: 95%;
+}
+input.inputEmail {
+	width: 95%;
+}
+.ibtn {
+  height: 18px;
+}
+
+.table-striped tbody tr.alert:nth-child(2n+1) td, .table-striped tbody tr.alert:nth-child(2n+1) th {
+	 background-color: #FCF8E3;
+}
+.table-striped tbody tr.alert-error:nth-child(2n+1) td, .table-striped tbody tr.alert-error:nth-child(2n+1) th {
+	 background-color: #F2DEDE;
+}
+.table-striped tbody tr.alert-success:nth-child(2n+1) td, .table-striped tbody tr.alert-success:nth-child(2n+1) th {
+	 background-color: #DFF0D8;
+}
+
+.table-striped tbody tr:nth-child(2n+1) td.alert, .table-striped tbody tr:nth-child(2n+1) th.alert {
+	 background-color: #FCF8E3;
+}
+.table-striped tbody tr:nth-child(2n+1) td.alert-error, .table-striped tbody tr:nth-child(2n+1) th.alert-error {
+	 background-color: #F2DEDE;
+}
+.table-striped tbody tr:nth-child(2n+1) td.alert-success, .table-striped tbody tr:nth-child(2n+1) th.alert-success {
+	 background-color: #DFF0D8;
+}
