@@ -1,4 +1,10 @@
-module product
+module shop/product
+
+access control rules
+
+  rule page product(p: Product, tab: String) { true }
+  
+  rule page catalogue() { true }
 
 section data model
 
@@ -28,10 +34,10 @@ section product view
   
   template viewProduct(p: Product) {
     par{ output(p.description) }
-    output(p.photo)
+    if(p.photo != null) { output(p.photo)[style="width:200px;"] }
     par{ "Price: " output(p.price) }
     buyButton(p) " "
-    navigate product(p, "edit") { iPencil " Edit" }
+    buttonNavigate(navigate(product(p, "edit"))){ iPencil " Edit" }
   }
   
   template editProduct(p: Product) {
@@ -40,18 +46,22 @@ section product view
       controlGroup("Name"){ input(p.name) }
       controlGroup("Price"){ input(p.price) }
       controlGroup("Description"){ input(p.description) }
-      controlGroup("Photo"){ input(p.photo) }
+      controlGroup("Photo"){ 
+        if(p.photo != null) { output(p.photo)[style="width:200px;"] }
+        input(p.photo) 
+      }
       controlGroup("Kind"){ input(p.kind) }
       formActions{
-        submitlink save() [class="btn btn-primary"] { "Save" } " "
-        navigate product(p,"") [class="btn"] { "Cancel" }
+        submit save() [class="btn btn-primary"] { "Save" } " "
+        //navigate product(p,"") [class="btn btn-default"] { "Cancel" }
+        buttonNavigate(navigate(product(p, ""))) { "Cancel" }
       }
     }
   }
   
   template buyButton(p: Product) {
     action buy() { p.buy(); }
-    submitlink buy() [class="btn"] { "Buy" }
+    submitlink buy() [class="btn btn-primary"] { "Buy" }
   }
   
   template newProduct() {
@@ -60,7 +70,7 @@ section product view
       p.save();
       return product(p, "edit");
     }
-    submitlink new() [class="btn"] { iPlus " New Product" }
+    submitlink new() [class="btn btn-default"] { iPlus " New Product" }
   }
   
 section catalogue
@@ -69,7 +79,7 @@ section catalogue
     column{ navigate product(p, "") { output(p.name) } }
     column{
       if(p.photo != null) {
-        navigate product(p, "") { output(p.photo) }
+        navigate product(p, "") { output(p.photo)[style="width:200px;"] }
       }
     }
   }

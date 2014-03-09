@@ -4,8 +4,8 @@ section main template
  
   template mainResponsive() {    
     includeCSS("bootstrap/css/bootstrap.css") 
-    includeCSS("bootstrap/css/bootstrap-responsive.css")   
-    includeCSS("bootstrap/css/bootstrap-adapt.css")
+    //includeCSS("bootstrap/css/bootstrap-responsive.css")   
+    //includeCSS("bootstrap/css/bootstrap-adapt.css")
     includeCSS("bootstrap-extension.css")
     includeJS("jquery.js")
     includeJS("bootstrap/js/bootstrap.js")
@@ -21,23 +21,23 @@ section main template
     mainResponsive{ 
       navbarResponsive{  
         navItems{ 
-          navItem{
-            navigate root() { "Home" }
-          }
           navItem{           
             navigate catalogue() { "Catalogus" }
           }
-          // navItem{           
-          //   navigate gebak() { "Gebak" }
-          // }
-          // navItem{           
-          //   navigate gebak() { "Knutselwerkjes" }
-          // }
-          // navItem{           
-          //   navigate gebak() { "Surprise" }
-          // }
           navItem{
             navigate shoppingcart() { iShoppingCartWhite }
+          }
+          if(loggedIn()) {
+            navItem{
+              navigate account(principal().username) { iUserWhite }
+            }
+            navItem{
+              navigate signout() { iLogOutWhite }
+            }
+          } else {
+            navItem{
+              navigate signin() { iLogInWhite " Sign In" }
+            }
           }
         }
       }
